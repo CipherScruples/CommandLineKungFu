@@ -1,2 +1,3 @@
-# CommandLineKungFu
-A random collection of useful cli tricks and utilities.
+# Command Line Kung-Fu
+Some things I've picked up over the years.
+## Parsing Stuff
