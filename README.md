@@ -9,3 +9,9 @@ RegEx string match recursively in all text and xml files:
 ```
 findstr /pinsr ^some.tring *.txt *.xml
 ```
+## Downloading Stuff
+Like wget for older versions of powershell
+```
+$WebClient = New-Object System.Net.WebClient
+$WebClient.DownloadFile("https://www.contoso.com/file","C:\path\file")
+```
