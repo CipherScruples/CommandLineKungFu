@@ -27,3 +27,9 @@ PsExec.exe -accepteula -s -h -d \\$NaughtyComputer powershell.exe "Set-Execution
 PsExec.exe -accepteula -s -h -d \\$NaughtyComputer powershell.exe "Enable-PSRemoting -Force"
 Enter-PSSession -ComputerName $NaughtyComputer
 ```
+## Doing Things Iteratively
+Getting  all the .msp files out of your windows Update .cab archives
+```
+Get-ChildItem -Path C:\Windows\SoftwareDistribution\Download\*.cab -Recurse | `
+Select-Object -ExpandProperty FullName | ForEach-Object {expand.exe $_ -F:* C:\Updates\}
+```
