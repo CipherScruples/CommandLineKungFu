@@ -12,8 +12,7 @@ findstr /pinsr ^some.tring *.txt *.xml
 ## Downloading Stuff
 Like wget for older versions of PowerShell
 ```
-$WebClient = New-Object System.Net.WebClient
-$WebClient.DownloadFile("https://www.contoso.com/file","C:\path\file")
+(New-Object System.Net.WebClient).DownloadFile("https://www.contoso.com/file","C:\path\file")
 ```
 Or wget for newer PowerShell
 ```
@@ -23,8 +22,8 @@ Invoke-WebRequest -Uri "http://www.contoso.com" -OutFile "C:\path\file"
 Enabling PsRemoting Remotely :-)
 ```
 $NaughtyComputer = Read-Host "Please Enter The ComputerName:"
-PsExec.exe -accepteula -s -h -d \\$NaughtyComputer powershell.exe "Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine -Force"
-PsExec.exe -accepteula -s -h -d \\$NaughtyComputer powershell.exe "Enable-PSRemoting -Force"
+psexec.exe -accepteula -s -h -e -d \\some-hostname powershell.exe "Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine -Force"
+psexec.exe -accepteula -s -h -e -d \\some-hostname powershell.exe "Enable-PSRemoting -Force"
 Enter-PSSession -ComputerName $NaughtyComputer
 ```
 ## Doing Things Iteratively
