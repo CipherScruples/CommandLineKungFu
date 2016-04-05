@@ -9,6 +9,10 @@ RegEx string match recursively in all text and xml files:
 ```
 findstr /pinsr ^some.tring *.txt *.xml
 ```
+Filtering Saved Windows Event Log Files With PowerShell
+```
+Get-WinEvent -Path "\\server\share\name-of-log.evt" -Oldest -FilterXPath "*[EventData[Data[@Name='TargetUserName'] = 'user.name']] or *[EventData[Data[@Name='Workstation'] = 'host-name']]"
+```
 ## Downloading Stuff
 Like wget for older versions of PowerShell
 ```
