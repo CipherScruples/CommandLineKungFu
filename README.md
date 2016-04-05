@@ -13,6 +13,10 @@ Filtering Saved Windows Event Log Files With PowerShell
 ```
 Get-WinEvent -Path "\\server\share\name-of-log.evt" -Oldest -FilterXPath "*[EventData[Data[@Name='TargetUserName'] = 'user.name']] or *[EventData[Data[@Name='Workstation'] = 'host-name']]"
 ```
+And If You Wanna' Get Fancy
+```
+Get-WinEvent -Path "\\server\share\name-of-log.evt" -Oldest -FilterXPath "*[EventData[Data[@Name='TargetUserName'] = 'user.name']] or *[EventData[Data[@Name='Workstation'] = 'host-name']]" | Select-Object -Property TimeCreated,Id,ProviderName,LogName,TaskDisplayName,Message,ContainerLog | ConvertTo-Html -Property * -As Table -Title 'Something' -PreContent '<H1>UserName: user.name</H1><H2>Workstation: host-name</H2><H2>Date: MM/DD/YYYY</H2>' | Out-File -FilePath C:\Path\To\File.html
+```
 ## Downloading Stuff
 Like wget for older versions of PowerShell
 ```
