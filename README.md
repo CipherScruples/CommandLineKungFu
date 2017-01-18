@@ -34,6 +34,27 @@ psexec.exe -accepteula -s -h -e -d \\some-hostname powershell.exe "Set-Execution
 psexec.exe -accepteula -s -h -e -d \\some-hostname powershell.exe "Enable-PSRemoting -Force"
 Enter-PSSession -ComputerName $NaughtyComputer
 ```
+Enabling RDP Remotely
+```
+$computerName = $env:COMPUTERNAME
+
+$ExePath = 'C:\Windows\System32\reg.exe'
+
+$RegKey = '\HKLM\SYSTEM\CurentControlSet\Control\Terminal Server'
+
+$RemoteRegKeyString = '\\' + $ComputerName + $RegKey
+
+[array] $InstallArgs = @(
+	'add',
+	$RemoteRegKeyString,
+	'/v fDenyTSConnections',
+	'/t REG_DWORD',
+	'/d 0',
+	'/f'
+)
+
+Start-Process -FilePath $ExePath -ArgumentList $InstallArgs -NoNewWindow -Wait | Out-Null
+```
 ## Doing Things Iteratively
 Getting  all the .msp files out of your windows Update .cab archives
 ```
